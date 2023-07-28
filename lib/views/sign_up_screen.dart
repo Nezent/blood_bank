@@ -1,3 +1,4 @@
+import 'package:blood_bank/views/profile_screen.dart';
 import 'package:blood_bank/widgets/palette.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: SafeArea(
             child: Padding(
@@ -390,23 +390,31 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(
                     height: 48,
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Palette.primaryRed,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Center(
-                        child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      child: Text(
-                        'Sign Up',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProfileScree()));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Palette.primaryRed,
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                    )),
+                      child: Center(
+                          child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        child: Text(
+                          'Sign Up',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        ),
+                      )),
+                    ),
                   ),
                 ],
               ),
