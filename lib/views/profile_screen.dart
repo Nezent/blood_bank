@@ -1,8 +1,12 @@
+import 'package:blood_bank/components/connection.dart';
+import 'package:blood_bank/components/register_data_model.dart';
 import 'package:blood_bank/widgets/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:mongo_dart/mongo_dart.dart' as mongo;
 
 class ProfileScree extends StatefulWidget {
-  const ProfileScree({super.key});
+  final mongo.ObjectId? id;
+  const ProfileScree({super.key, required this.id});
 
   @override
   State<ProfileScree> createState() => _ProfileScreeState();
@@ -29,62 +33,82 @@ class _ProfileScreeState extends State<ProfileScree> {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-        child: Column(
-          children: [
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                Container(
-                  height: 90,
-                  width: 90,
-                  decoration: BoxDecoration(
-                      color: Palette.primaryRed, shape: BoxShape.circle),
+      body: FutureBuilder(
+          future: MongoDB.getUserData(widget.id),
+          builder: (context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              var userData = RegisterDataModel.fromJson(snapshot.data!);
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                child: Column(
+                  children: [
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          height: 90,
+                          width: 90,
+                          decoration: BoxDecoration(
+                              color: Palette.primaryRed,
+                              shape: BoxShape.circle),
+                        ),
+                        CircleAvatar(
+                          radius: 40,
+                          backgroundImage: AssetImage('images/main.jpg'),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    ProfileItem(
+                      icon: Icon(
+                        Icons.person,
+                        color: Palette.primaryRed,
+                      ),
+                      value: userData.name,
+                    ),
+                    ProfileItem(
+                        icon: Icon(
+                          Icons.email,
+                          color: Palette.primaryRed,
+                        ),
+                        value: 'abcd@gmail.com'),
+                    ProfileItem(
+                        icon: Icon(
+                          Icons.bloodtype,
+                          color: Palette.primaryRed,
+                        ),
+                        value: userData.bloodType),
+                    ProfileItem(
+                        icon: Icon(
+                          Icons.phone,
+                          color: Palette.primaryRed,
+                        ),
+                        value: userData.number),
+                    ProfileItem(
+                        icon: Icon(
+                          Icons.gps_fixed,
+                          color: Palette.primaryRed,
+                        ),
+                        value: userData.address),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    ProfileItem(
+                        icon: Icon(
+                          Icons.logout,
+                          color: Palette.primaryRed,
+                        ),
+                        value: 'Logout'),
+                  ],
                 ),
-                CircleAvatar(
-                  radius: 40,
-                  backgroundImage: AssetImage('images/main.jpg'),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            ProfileItem(
-              icon: Icon(
-                Icons.person,
-                color: Palette.primaryRed,
-              ),
-              value: 'Sadia Sultana Pinky',
-            ),
-            ProfileItem(
-                icon: Icon(
-                  Icons.email,
-                  color: Palette.primaryRed,
-                ),
-                value: 'abcd@gmail.com'),
-            ProfileItem(
-                icon: Icon(
-                  Icons.bloodtype,
-                  color: Palette.primaryRed,
-                ),
-                value: 'AB+'),
-            ProfileItem(
-                icon: Icon(
-                  Icons.phone,
-                  color: Palette.primaryRed,
-                ),
-                value: '+8801234567789'),
-            ProfileItem(
-                icon: Icon(
-                  Icons.gps_fixed,
-                  color: Palette.primaryRed,
-                ),
-                value: 'Bandarban University'),
-          ],
-        ),
-      ),
+              );
+            } else {
+              return SizedBox();
+            }
+          }),
     );
   }
 }

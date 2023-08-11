@@ -1,3 +1,8 @@
+import 'package:blood_bank/components/connection.dart';
+import 'package:blood_bank/components/globals.dart';
+import 'package:blood_bank/components/register_data_model.dart';
+import 'package:blood_bank/components/register_model.dart';
+import 'package:blood_bank/views/login_screen.dart';
 import 'package:blood_bank/views/profile_screen.dart';
 import 'package:blood_bank/widgets/palette.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +15,12 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  var selectedBlood = "Select Blood";
+  var nameController = TextEditingController();
+  var phoneController = TextEditingController();
+  var addressController = TextEditingController();
+  var passwordController = TextEditingController();
+  var confrimPasswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +56,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 16,
                   ),
                   TextFormField(
+                    controller: nameController,
                     decoration: InputDecoration(
                       hintText: 'Name',
                       contentPadding:
@@ -61,9 +73,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 30,
                   ),
                   TextFormField(
-                    keyboardType: TextInputType.emailAddress,
+                    controller: phoneController,
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      hintText: 'Email',
+                      hintText: 'Phone',
                       contentPadding:
                           EdgeInsets.symmetric(horizontal: 12, vertical: 16),
                       border: OutlineInputBorder(
@@ -102,97 +115,129 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Container(
-                                        height: 57,
-                                        width: 57,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                          border: Border.all(
-                                            color: Palette.primaryRed,
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            selectedBlood = "A+";
+                                          });
+                                          Navigator.pop(context);
+                                        },
+                                        child: Container(
+                                          height: 57,
+                                          width: 57,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            border: Border.all(
+                                              color: Palette.primaryRed,
+                                            ),
                                           ),
-                                        ),
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(12),
-                                            child: Text(
-                                              'A+',
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600,
-                                                color: Palette.primaryRed,
+                                          child: Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(12),
+                                              child: Text(
+                                                'A+',
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Palette.primaryRed,
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                      Container(
-                                        height: 57,
-                                        width: 57,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                          border: Border.all(
-                                            color: Palette.primaryRed,
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            selectedBlood = "A-";
+                                          });
+                                          Navigator.pop(context);
+                                        },
+                                        child: Container(
+                                          height: 57,
+                                          width: 57,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            border: Border.all(
+                                              color: Palette.primaryRed,
+                                            ),
                                           ),
-                                        ),
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(12),
-                                            child: Text(
-                                              'A-',
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600,
-                                                color: Palette.primaryRed,
+                                          child: Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(12),
+                                              child: Text(
+                                                'A-',
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Palette.primaryRed,
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                      Container(
-                                        height: 57,
-                                        width: 57,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                          border: Border.all(
-                                            color: Palette.primaryRed,
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            selectedBlood = "B+";
+                                          });
+                                          Navigator.pop(context);
+                                        },
+                                        child: Container(
+                                          height: 57,
+                                          width: 57,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            border: Border.all(
+                                              color: Palette.primaryRed,
+                                            ),
                                           ),
-                                        ),
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(12),
-                                            child: Text(
-                                              'B+',
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600,
-                                                color: Palette.primaryRed,
+                                          child: Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(12),
+                                              child: Text(
+                                                'B+',
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Palette.primaryRed,
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                      Container(
-                                        height: 57,
-                                        width: 57,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                          border: Border.all(
-                                            color: Palette.primaryRed,
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            selectedBlood = "B-";
+                                          });
+                                          Navigator.pop(context);
+                                        },
+                                        child: Container(
+                                          height: 57,
+                                          width: 57,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            border: Border.all(
+                                              color: Palette.primaryRed,
+                                            ),
                                           ),
-                                        ),
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(12),
-                                            child: Text(
-                                              'B-',
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600,
-                                                color: Palette.primaryRed,
+                                          child: Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(12),
+                                              child: Text(
+                                                'B-',
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Palette.primaryRed,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -204,109 +249,144 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 SizedBox(
                                   height: 12,
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 8),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        height: 57,
-                                        width: 57,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                          border: Border.all(
-                                            color: Palette.primaryRed,
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedBlood = "AB+";
+                                    });
+                                    Navigator.pop(context);
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(bottom: 8),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          height: 57,
+                                          width: 57,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            border: Border.all(
+                                              color: Palette.primaryRed,
+                                            ),
                                           ),
-                                        ),
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(12),
-                                            child: Text(
-                                              'AB+',
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600,
-                                                color: Palette.primaryRed,
+                                          child: Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(12),
+                                              child: Text(
+                                                'AB+',
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Palette.primaryRed,
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      Container(
-                                        height: 57,
-                                        width: 57,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                          border: Border.all(
-                                            color: Palette.primaryRed,
-                                          ),
-                                        ),
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(12),
-                                            child: Text(
-                                              'AB-',
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600,
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              selectedBlood = "AB-";
+                                            });
+                                            Navigator.pop(context);
+                                          },
+                                          child: Container(
+                                            height: 57,
+                                            width: 57,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              border: Border.all(
                                                 color: Palette.primaryRed,
+                                              ),
+                                            ),
+                                            child: Center(
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(12),
+                                                child: Text(
+                                                  'AB-',
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Palette.primaryRed,
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      Container(
-                                        height: 57,
-                                        width: 57,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                          border: Border.all(
-                                            color: Palette.primaryRed,
-                                          ),
-                                        ),
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(12),
-                                            child: Text(
-                                              'O+',
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600,
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              selectedBlood = "O+";
+                                            });
+                                            Navigator.pop(context);
+                                          },
+                                          child: Container(
+                                            height: 57,
+                                            width: 57,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              border: Border.all(
                                                 color: Palette.primaryRed,
+                                              ),
+                                            ),
+                                            child: Center(
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(12),
+                                                child: Text(
+                                                  'O+',
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Palette.primaryRed,
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      Container(
-                                        height: 57,
-                                        width: 57,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                          border: Border.all(
-                                            color: Palette.primaryRed,
-                                          ),
-                                        ),
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(12),
-                                            child: Text(
-                                              'O-',
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600,
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              selectedBlood = "O-";
+                                            });
+                                            Navigator.pop(context);
+                                          },
+                                          child: Container(
+                                            height: 57,
+                                            width: 57,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              border: Border.all(
                                                 color: Palette.primaryRed,
+                                              ),
+                                            ),
+                                            child: Center(
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(12),
+                                                child: Text(
+                                                  'O-',
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Palette.primaryRed,
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],
@@ -323,7 +403,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       suffixIcon: Icon(
                         Icons.arrow_drop_down,
                       ),
-                      hintText: 'Blood Type',
+                      hintText: selectedBlood,
                       contentPadding:
                           EdgeInsets.symmetric(horizontal: 12, vertical: 16),
                       border: OutlineInputBorder(
@@ -338,6 +418,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 30,
                   ),
                   TextFormField(
+                    controller: addressController,
                     keyboardType: TextInputType.streetAddress,
                     decoration: InputDecoration(
                       suffixIcon: Icon(Icons.gps_fixed),
@@ -356,6 +437,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 30,
                   ),
                   TextFormField(
+                    controller: passwordController,
                     obscureText: false,
                     decoration: InputDecoration(
                       hintText: 'Password',
@@ -373,6 +455,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 30,
                   ),
                   TextFormField(
+                    controller: confrimPasswordController,
                     obscureText: true,
                     decoration: InputDecoration(
                       suffixIcon: Icon(Icons.visibility_off),
@@ -391,11 +474,57 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 48,
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProfileScree()));
+                    onTap: () async {
+                      if (passwordController.text ==
+                          confrimPasswordController.text) {
+                        Dialog optionDialog = Dialog(
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(8.0)), //this right here
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.white,
+                            ),
+                            height: 300.0,
+                            width: 300.0,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 30),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset('images/accept.png'),
+                                  SizedBox(
+                                    height: 16,
+                                  ),
+                                  Text(
+                                    'Thanks for registering',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) => optionDialog);
+                        _insertData(
+                            nameController.text,
+                            phoneController.text,
+                            passwordController.text,
+                            selectedBlood,
+                            addressController.text);
+                      } else {
+                        final SnackBar snackBar =
+                            SnackbarMessage("Password Didn't Match");
+                        snackbarKey.currentState?.showSnackBar(snackBar);
+                      }
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -449,5 +578,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
         )),
       ),
     );
+  }
+
+  Future<void> _insertData(String name, String number, String password,
+      String bloodType, String address) async {
+    final data = RegisterDataModel(
+      name: name,
+      address: address,
+      bloodType: bloodType,
+      number: number,
+      password: password,
+      isAvailable: true,
+    );
+    await MongoDB.register(data);
+    await Future.delayed(const Duration(milliseconds: 1000));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => LoginScreen()));
   }
 }

@@ -1,10 +1,14 @@
+import 'package:blood_bank/components/connection.dart';
 import 'package:blood_bank/views/home_screen.dart';
 import 'package:blood_bank/views/login_screen.dart';
 import 'package:blood_bank/views/splash_screen.dart';
 import 'package:blood_bank/widgets/palette.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await MongoDB.connect();
   runApp(const MyApp());
 }
 
